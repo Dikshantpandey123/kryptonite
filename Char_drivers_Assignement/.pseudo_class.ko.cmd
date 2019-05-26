@@ -1,0 +1,1 @@
+cmd_/home/desd/Downloads/Char_drivers_Assignement/pseudo_class.ko := ld -r -m elf_x86_64 -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/desd/Downloads/Char_drivers_Assignement/pseudo_class.ko /home/desd/Downloads/Char_drivers_Assignement/pseudo_class.o /home/desd/Downloads/Char_drivers_Assignement/pseudo_class.mod.o ;  true
