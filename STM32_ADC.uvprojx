@@ -1,526 +1,271 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="project_projx.xsd">
+/* USER CODE BEGIN Header */
+/******************************************************************************
+This project is regarding the ADC configuration with STM32F4 Discovery Board.
+*****************************************************************************/
 
-  <SchemaVersion>2.1</SchemaVersion>
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  ** This notice applies to any and all portions of this file
+  * that are not between comment pairs USER CODE BEGIN and
+  * USER CODE END. Other portions of this file, whether 
+  * inserted by the user or by software development tools
+  * are owned by their respective copyright owners.
+  *
+  * COPYRIGHT(c) 2019 STMicroelectronics
+  *
+  * Redistribution and use in source and binary forms, with or without modification,
+  * are permitted provided that the following conditions are met:
+  *   1. Redistributions of source code must retain the above copyright notice,
+  *      this list of conditions and the following disclaimer.
+  *   2. Redistributions in binary form must reproduce the above copyright notice,
+  *      this list of conditions and the following disclaimer in the documentation
+  *      and/or other materials provided with the distribution.
+  *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  *      may be used to endorse or promote products derived from this software
+  *      without specific prior written permission.
+  *
+  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
 
-  <Header>### uVision Project, (C) Keil Software</Header>
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
 
-  <Targets>
-    <Target>
-      <TargetName>STM32_ADC</TargetName>
-      <ToolsetNumber>0x4</ToolsetNumber>
-      <ToolsetName>ARM-ADS</ToolsetName>
-      <uAC6>0</uAC6>
-      <TargetOption>
-        <TargetCommonOption>
-          <Device>STM32F407VGTx</Device>
-          <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F4xx_DFP.2.13.0</PackID>
-          <PackURL>http://www.keil.com/pack</PackURL>
-          <Cpu>IRAM(0x20000000-0x2001FFFF) IRAM2(0x10000000-0x1000FFFF) IROM(0x8000000-0x80FFFFF) CLOCK(25000000) FPU2 CPUTYPE("Cortex-M4")</Cpu>
-          <FlashUtilSpec></FlashUtilSpec>
-          <StartupFile></StartupFile>
-          <FlashDriverDll></FlashDriverDll>
-          <DeviceId></DeviceId>
-          <RegisterFile></RegisterFile>
-          <MemoryEnv></MemoryEnv>
-          <Cmp></Cmp>
-          <Asm></Asm>
-          <Linker></Linker>
-          <OHString></OHString>
-          <InfinionOptionDll></InfinionOptionDll>
-          <SLE66CMisc></SLE66CMisc>
-          <SLE66AMisc></SLE66AMisc>
-          <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:STM32F407VGTx$CMSIS\SVD\STM32F40x.svd</SFDFile>
-          <bCustSvd>0</bCustSvd>
-          <UseEnv>0</UseEnv>
-          <BinPath></BinPath>
-          <IncludePath></IncludePath>
-          <LibPath></LibPath>
-          <RegisterFilePath></RegisterFilePath>
-          <DBRegisterFilePath></DBRegisterFilePath>
-          <TargetStatus>
-            <Error>0</Error>
-            <ExitCodeStop>0</ExitCodeStop>
-            <ButtonStop>0</ButtonStop>
-            <NotGenerated>0</NotGenerated>
-            <InvalidFlash>1</InvalidFlash>
-          </TargetStatus>
-          <OutputDirectory>STM32_ADC\</OutputDirectory>
-          <OutputName>STM32_ADC</OutputName>
-          <CreateExecutable>1</CreateExecutable>
-          <CreateLib>0</CreateLib>
-          <CreateHexFile>1</CreateHexFile>
-          <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
-          <ListingPath></ListingPath>
-          <HexFormatSelection>1</HexFormatSelection>
-          <Merge32K>0</Merge32K>
-          <CreateBatchFile>0</CreateBatchFile>
-          <BeforeCompile>
-            <RunUserProg1>0</RunUserProg1>
-            <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
-            <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
-            <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
-            <nStopU1X>0</nStopU1X>
-            <nStopU2X>0</nStopU2X>
-          </BeforeCompile>
-          <BeforeMake>
-            <RunUserProg1>0</RunUserProg1>
-            <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
-            <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
-            <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
-            <nStopB1X>0</nStopB1X>
-            <nStopB2X>0</nStopB2X>
-          </BeforeMake>
-          <AfterMake>
-            <RunUserProg1>0</RunUserProg1>
-            <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
-            <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
-            <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
-            <nStopA1X>0</nStopA1X>
-            <nStopA2X>0</nStopA2X>
-          </AfterMake>
-          <SelectedForBatchBuild>0</SelectedForBatchBuild>
-          <SVCSIdString></SVCSIdString>
-        </TargetCommonOption>
-        <CommonProperty>
-          <UseCPPCompiler>0</UseCPPCompiler>
-          <RVCTCodeConst>0</RVCTCodeConst>
-          <RVCTZI>0</RVCTZI>
-          <RVCTOtherData>0</RVCTOtherData>
-          <ModuleSelection>0</ModuleSelection>
-          <IncludeInBuild>1</IncludeInBuild>
-          <AlwaysBuild>0</AlwaysBuild>
-          <GenerateAssemblyFile>0</GenerateAssemblyFile>
-          <AssembleAssemblyFile>0</AssembleAssemblyFile>
-          <PublicsOnly>0</PublicsOnly>
-          <StopOnExitCode>3</StopOnExitCode>
-          <CustomArgument></CustomArgument>
-          <IncludeLibraryModules></IncludeLibraryModules>
-          <ComprImg>0</ComprImg>
-        </CommonProperty>
-        <DllOption>
-          <SimDllName>SARMCM3.DLL</SimDllName>
-          <SimDllArguments>-REMAP -MPU</SimDllArguments>
-          <SimDlgDll>DCM.DLL</SimDlgDll>
-          <SimDlgDllArguments>-pCM4</SimDlgDllArguments>
-          <TargetDllName>SARMCM3.DLL</TargetDllName>
-          <TargetDllArguments>-MPU</TargetDllArguments>
-          <TargetDlgDll>TCM.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pCM4</TargetDlgDllArguments>
-        </DllOption>
-        <DebugOption>
-          <OPTHX>
-            <HexSelection>1</HexSelection>
-            <HexRangeLowAddress>0</HexRangeLowAddress>
-            <HexRangeHighAddress>0</HexRangeHighAddress>
-            <HexOffset>0</HexOffset>
-            <Oh166RecLen>16</Oh166RecLen>
-          </OPTHX>
-        </DebugOption>
-        <Utilities>
-          <Flash1>
-            <UseTargetDll>1</UseTargetDll>
-            <UseExternalTool>0</UseExternalTool>
-            <RunIndependent>0</RunIndependent>
-            <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>1</Capability>
-            <DriverSelection>4107</DriverSelection>
-          </Flash1>
-          <bUseTDR>1</bUseTDR>
-          <Flash2>STLink\ST-LINKIII-KEIL_SWO.dll</Flash2>
-          <Flash3></Flash3>
-          <Flash4></Flash4>
-          <pFcarmOut></pFcarmOut>
-          <pFcarmGrp></pFcarmGrp>
-          <pFcArmRoot></pFcArmRoot>
-          <FcArmLst>0</FcArmLst>
-        </Utilities>
-        <TargetArmAds>
-          <ArmAdsMisc>
-            <GenerateListings>0</GenerateListings>
-            <asHll>1</asHll>
-            <asAsm>1</asAsm>
-            <asMacX>1</asMacX>
-            <asSyms>1</asSyms>
-            <asFals>1</asFals>
-            <asDbgD>1</asDbgD>
-            <asForm>1</asForm>
-            <ldLst>0</ldLst>
-            <ldmm>1</ldmm>
-            <ldXref>1</ldXref>
-            <BigEnd>0</BigEnd>
-            <AdsALst>1</AdsALst>
-            <AdsACrf>1</AdsACrf>
-            <AdsANop>0</AdsANop>
-            <AdsANot>0</AdsANot>
-            <AdsLLst>1</AdsLLst>
-            <AdsLmap>1</AdsLmap>
-            <AdsLcgr>1</AdsLcgr>
-            <AdsLsym>1</AdsLsym>
-            <AdsLszi>1</AdsLszi>
-            <AdsLtoi>1</AdsLtoi>
-            <AdsLsun>1</AdsLsun>
-            <AdsLven>1</AdsLven>
-            <AdsLsxf>1</AdsLsxf>
-            <RvctClst>0</RvctClst>
-            <GenPPlst>0</GenPPlst>
-            <AdsCpuType>"Cortex-M4"</AdsCpuType>
-            <RvctDeviceName></RvctDeviceName>
-            <mOS>0</mOS>
-            <uocRom>0</uocRom>
-            <uocRam>0</uocRam>
-            <hadIROM>1</hadIROM>
-            <hadIRAM>1</hadIRAM>
-            <hadXRAM>0</hadXRAM>
-            <uocXRam>0</uocXRam>
-            <RvdsVP>2</RvdsVP>
-            <RvdsMve>0</RvdsMve>
-            <hadIRAM2>1</hadIRAM2>
-            <hadIROM2>0</hadIROM2>
-            <StupSel>8</StupSel>
-            <useUlib>1</useUlib>
-            <EndSel>0</EndSel>
-            <uLtcg>0</uLtcg>
-            <nSecure>0</nSecure>
-            <RoSelD>3</RoSelD>
-            <RwSelD>3</RwSelD>
-            <CodeSel>0</CodeSel>
-            <OptFeed>0</OptFeed>
-            <NoZi1>0</NoZi1>
-            <NoZi2>0</NoZi2>
-            <NoZi3>0</NoZi3>
-            <NoZi4>0</NoZi4>
-            <NoZi5>0</NoZi5>
-            <Ro1Chk>0</Ro1Chk>
-            <Ro2Chk>0</Ro2Chk>
-            <Ro3Chk>0</Ro3Chk>
-            <Ir1Chk>1</Ir1Chk>
-            <Ir2Chk>0</Ir2Chk>
-            <Ra1Chk>0</Ra1Chk>
-            <Ra2Chk>0</Ra2Chk>
-            <Ra3Chk>0</Ra3Chk>
-            <Im1Chk>1</Im1Chk>
-            <Im2Chk>0</Im2Chk>
-            <OnChipMemories>
-              <Ocm1>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm1>
-              <Ocm2>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm2>
-              <Ocm3>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm3>
-              <Ocm4>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm4>
-              <Ocm5>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm5>
-              <Ocm6>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm6>
-              <IRAM>
-                <Type>0</Type>
-                <StartAddress>0x20000000</StartAddress>
-                <Size>0x20000</Size>
-              </IRAM>
-              <IROM>
-                <Type>1</Type>
-                <StartAddress>0x8000000</StartAddress>
-                <Size>0x100000</Size>
-              </IROM>
-              <XRAM>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </XRAM>
-              <OCR_RVCT1>
-                <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT1>
-              <OCR_RVCT2>
-                <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT2>
-              <OCR_RVCT3>
-                <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT3>
-              <OCR_RVCT4>
-                <Type>1</Type>
-                <StartAddress>0x8000000</StartAddress>
-                <Size>0x100000</Size>
-              </OCR_RVCT4>
-              <OCR_RVCT5>
-                <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT5>
-              <OCR_RVCT6>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT6>
-              <OCR_RVCT7>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT7>
-              <OCR_RVCT8>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT8>
-              <OCR_RVCT9>
-                <Type>0</Type>
-                <StartAddress>0x20000000</StartAddress>
-                <Size>0x20000</Size>
-              </OCR_RVCT9>
-              <OCR_RVCT10>
-                <Type>0</Type>
-                <StartAddress>0x10000000</StartAddress>
-                <Size>0x10000</Size>
-              </OCR_RVCT10>
-            </OnChipMemories>
-            <RvctStartVector></RvctStartVector>
-          </ArmAdsMisc>
-          <Cads>
-            <interw>1</interw>
-            <Optim>4</Optim>
-            <oTime>0</oTime>
-            <SplitLS>0</SplitLS>
-            <OneElfS>1</OneElfS>
-            <Strict>0</Strict>
-            <EnumInt>0</EnumInt>
-            <PlainCh>0</PlainCh>
-            <Ropi>0</Ropi>
-            <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
-            <uThumb>0</uThumb>
-            <uSurpInc>0</uSurpInc>
-            <uC99>1</uC99>
-            <uGnu>0</uGnu>
-            <useXO>0</useXO>
-            <v6Lang>1</v6Lang>
-            <v6LangP>1</v6LangP>
-            <vShortEn>1</vShortEn>
-            <vShortWch>1</vShortWch>
-            <v6Lto>0</v6Lto>
-            <v6WtE>0</v6WtE>
-            <v6Rtti>0</v6Rtti>
-            <VariousControls>
-              <MiscControls></MiscControls>
-              <Define>USE_HAL_DRIVER,STM32F407xx</Define>
-              <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include</IncludePath>
-            </VariousControls>
-          </Cads>
-          <Aads>
-            <interw>1</interw>
-            <Ropi>0</Ropi>
-            <Rwpi>0</Rwpi>
-            <thumb>0</thumb>
-            <SplitLS>0</SplitLS>
-            <SwStkChk>0</SwStkChk>
-            <NoWarn>0</NoWarn>
-            <uSurpInc>0</uSurpInc>
-            <useXO>0</useXO>
-            <uClangAs>0</uClangAs>
-            <VariousControls>
-              <MiscControls></MiscControls>
-              <Define></Define>
-              <Undefine></Undefine>
-              <IncludePath></IncludePath>
-            </VariousControls>
-          </Aads>
-          <LDads>
-            <umfTarg>1</umfTarg>
-            <Ropi>0</Ropi>
-            <Rwpi>0</Rwpi>
-            <noStLib>0</noStLib>
-            <RepFail>1</RepFail>
-            <useFile>0</useFile>
-            <TextAddressRange>0x08000000</TextAddressRange>
-            <DataAddressRange>0x20000000</DataAddressRange>
-            <pXoBase></pXoBase>
-            <ScatterFile></ScatterFile>
-            <IncludeLibs></IncludeLibs>
-            <IncludeLibsPath></IncludeLibsPath>
-            <Misc></Misc>
-            <LinkerInputFile></LinkerInputFile>
-            <DisabledWarnings></DisabledWarnings>
-          </LDads>
-        </TargetArmAds>
-      </TargetOption>
-      <Groups>
-        <Group>
-          <GroupName>Application/MDK-ARM</GroupName>
-          <Files>
-            <File>
-              <FileName>startup_stm32f407xx.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>startup_stm32f407xx.s</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>::CMSIS</GroupName>
-        </Group>
-        <Group>
-          <GroupName>Application/User</GroupName>
-          <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/main.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/stm32f4xx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_msp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/stm32f4xx_hal_msp.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/STM32F4xx_HAL_Driver</GroupName>
-          <Files>
-            <File>
-              <FileName>stm32f4xx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_adc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_tim_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_rcc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_rcc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_flash_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_flash_ramfunc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_dma_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_pwr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_pwr_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal_cortex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_hal.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/CMSIS</GroupName>
-          <Files>
-            <File>
-              <FileName>system_stm32f4xx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/system_stm32f4xx.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-      </Groups>
-    </Target>
-  </Targets>
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
 
-  <RTE>
-    <apis/>
-    <components>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="4.3.0" condition="CMSIS Core">
-        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.5.0"/>
-        <targetInfos>
-          <targetInfo name="STM32_ADC"/>
-        </targetInfos>
-      </component>
-    </components>
-    <files/>
-  </RTE>
+/* USER CODE END Includes */
 
-</Project>
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+uint16_t adcvalue;
+/* Private variables ---------------------------------------------------------*/
+ADC_HandleTypeDef hadc1;
+
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_ADC1_Init(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+  /* USER CODE BEGIN 1 */
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_ADC1_Init();
+  /* USER CODE BEGIN 2 */
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+		HAL_ADC_Start(&hadc1);
+		if(HAL_ADC_PollForConversion(&hadc1,5)==HAL_OK)
+		{
+			adcvalue=HAL_ADC_GetValue(&hadc1);
+			HAL_Delay(500);
+		}
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /**Configure the main internal regulator output voltage 
+  */
+  __HAL_RCC_PWR_CLK_ENABLE();
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+  /**Initializes the CPU, AHB and APB busses clocks 
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /**Initializes the CPU, AHB and APB busses clocks 
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/**
+  * @brief ADC1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_ADC1_Init(void)
+{
+
+  /* USER CODE BEGIN ADC1_Init 0 */
+
+  /* USER CODE END ADC1_Init 0 */
+
+  ADC_ChannelConfTypeDef sConfig = {0};
+
+  /* USER CODE BEGIN ADC1_Init 1 */
+
+  /* USER CODE END ADC1_Init 1 */
+  /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
+  */
+  hadc1.Instance = ADC1;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
+  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc1.Init.ScanConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
+  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.DMAContinuousRequests = DISABLE;
+  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  if (HAL_ADC_Init(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+  */
+  sConfig.Channel = ADC_CHANNEL_0;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ADC1_Init 2 */
+
+  /* USER CODE END ADC1_Init 2 */
+
+}
+
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+
+}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{ 
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
+
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
