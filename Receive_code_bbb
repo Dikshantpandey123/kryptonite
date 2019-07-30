@@ -1,0 +1,44 @@
+#!/usr/bin/python
+import Adafruit_BBIO.GPIO as GPIO
+from time import sleep
+import datetime
+import time
+import can
+
+can.rc['interface'] = 'socketcan_ctypes'
+from can.interfaces.interface import Bus
+from can import Message
+
+GPIO.setup("P8_13",GPIO.OUT)
+
+def check_rx(id,data):
+     now = datetime.datetime.now()
+     timeString = now.strftime("%d.%m.%Y %H:%M:%S ")
+
+     print(timeString," ID ",id," Data",data)
+
+
+def main():
+    can_interface = 'can0'
+    bus = Bus(can_interface)
+    try:
+        while True:
+            Message = bus.recv(1024)
+            if Message:
+                check_rx(Message.arbitration_id, Message.data[0])
+    #In general, When GPIO is low, the vehicle will switch to Electric Mode
+    #When GPIO is high, the vehicle will switch to IC Combustion Mode.
+    #ADC Configuration -->Message Recieve..
+    #ADC > 100,then switch to Electric to Combustion.
+    #ADC < 100,then switch to Combustion to Electric.
+                if(Message.data[0]==0x10):
+                    GPIO.output("P8_13",GPIO.LOW)
+                    print("Switching to IC Combustion Mode")
+                elif(Message.data[0]==0x80):
+                    GPIO.output("P8_13",GPIO.HIGH)
+                    print("Switching to Electric Mode")
+    #I2C Mode is configured here. Whenever the data crosses the threshold
+    #condition, context switching will occur
+                else:
+                    GPIO.output("P8_13",GPIO.LOW)
+                    print("Switching to IC Combustion Mode")
